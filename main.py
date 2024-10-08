@@ -12,7 +12,7 @@ class Board:
         self.height = height
         self.width = width
 
-    def print_board(self, board, print_range, squadron):
+    def print_board(self, board, coordinates_in_range):
 
         print(' ', end='')
         for c in list(string.ascii_uppercase)[:self.width]:
@@ -26,7 +26,7 @@ class Board:
             for j in range(self.width):
                 a = self.army[i][j]
                 print(f'{style.none}'
-                      f'{fore.green if a == 'U' else fore.red if a == 'E' else fore.magenta if (abs(i - squadron[0]) <= print_range and abs(j - squadron[1]) <= print_range) and print_range > 0 else fore.white}'
+                      f'{fore.green if a == 'U' else fore.red if a == 'E' else fore.magenta if [i, j] in coordinates_in_range else fore.white}'
                       f'{board[i][j]}'
                       f'{(' ' * ((3 - len(board[i][j])) + 2)) if board == self.healths else '  '}', end='')
 
@@ -34,15 +34,16 @@ class Board:
 
         print('')
 
-    def print(self, print_range, squadron):
+    def print(self, coordinates_in_range):
         print(f'{style.bold}{fore.white}POSITION BOARD')
-        self.print_board(self.positions, print_range, squadron)
+        self.print_board(self.positions, coordinates_in_range)
 
         print(f'{style.bold}{fore.white}HEALTH BOARD')
-        self.print_board(self.healths, print_range, squadron)
+        self.print_board(self.healths, coordinates_in_range)
 
 class SquadronClass:
-    def __init__(self, health, attack_range, move_range, damage, bonus_damage, bonus_against):
+    def __init__(self, name, health, attack_range, move_range, damage, bonus_damage, bonus_against):
+        self.name = name
         self.health = health
         self.attack_range = attack_range
         self.move_range = move_range
@@ -51,18 +52,18 @@ class SquadronClass:
         self.bonus_against = bonus_against
 
 squadron_classes = {
-    'A': SquadronClass(100, 4, 1, 60, 30, ['S', 'F']),
-    'F': SquadronClass(350, 1, 2, 45, 30, ['M', 'A']),
-    'S': SquadronClass(650, 1, 1, 10, 100, ['C', 'F']),
-    'C': SquadronClass(500, 1, 4, 50, 30, ['A', 'M']),
-    'M': SquadronClass(200, 3, 2, 30, 40, ['S', 'C'])
+    'A': SquadronClass('Archer', 100, 4, 1, 60, 30, ['Spearman', 'Footman']),
+    'F': SquadronClass('Footman', 350, 1, 2, 45, 30, ['Mage', 'Archer']),
+    'S': SquadronClass('Spearman', 650, 1, 1, 10, 100, ['Cavalier', 'Footman']),
+    'C': SquadronClass('Cavalier', 500, 1, 4, 50, 30, ['Archer', 'Mage']),
+    'M': SquadronClass('Mage', 200, 3, 2, 30, 40, ['Spearman', 'Cavalier'])
 }
 
 
 def main():
     battle_squadrons = {
         'A': 1,
-        'F': 0,
+        'F': 1,
         'M': 0,
         'C': 0,
         'S': 0
@@ -97,8 +98,29 @@ def get_position_input(board):
 
                 return [result, coordinates, taken, is_enemy]
 
+
+def get_coordinates_in_range(board, origin, action_range):
+    return [[i, j] for i in range(board.width) for j in range(board.height) if (abs(i - origin[0]) <= action_range and abs(j - origin[1]) <= action_range) and action_range > 0]
+
+def move_squadron(board, origin, desired):
+    # Move origin attributes to desired position
+    board.positions[desired[0]][desired[1]] = board.positions[origin[0]][origin[1]]
+    board.healths[desired[0]][desired[1]] = board.healths[origin[0]][origin[1]]
+    board.army[desired[0]][desired[1]] = board.army[origin[0]][origin[1]]
+
+    # Remove existence of origin attributes
+    board.positions[origin[0]][origin[1]] = '-'
+    board.healths[origin[0]][origin[1]] = '-'
+    board.army[origin[0]][origin[1]] = '-'
+
+def attack_squadron(board, squadron, desired, bonus):
+    board.healths[desired[0]][desired[1]] = str(int(board.healths[desired[0]][desired[1]]) - squadron.damage + squadron.bonus_damage if bonus else squadron.damage)
+
 def battle_user_turn(board):
     print(f'{style.under}USER TURN{style.none}{fore.white}')
+
+    board.print([])
+
     print(f'Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
 
     action = input()
@@ -108,26 +130,76 @@ def battle_user_turn(board):
 
     print(f'From what position would you like to {'move' if action == 'm' else 'attack'}?')
 
+    origin_display = ''
+    origin_coordinates = []
+    origin_taken = False
+    origin_is_enemy = False
+
+    while not origin_taken or origin_is_enemy:
+        origin_input = get_position_input(board)
+
+        origin_display = origin_input[0]
+        origin_coordinates = origin_input[1]
+        origin_taken = origin_input[2]
+        origin_is_enemy = origin_input[3]
+
     if action == 'm':
-        origin_display = ''
-        origin_coordinates = []
-        origin_taken = False
-        origin_is_enemy = False
+        squadron = squadron_classes[board.positions[origin_coordinates[0]][origin_coordinates[1]]]
+        coordinates_in_range = get_coordinates_in_range(board, origin_coordinates, squadron.move_range)
 
-        while not origin_taken or origin_is_enemy:
-            origin_input = get_position_input(board)
-
-            origin_position = origin_input[0]
-            origin_coordinates = origin_input[1]
-            origin_taken = origin_input[2]
-            origin_is_enemy = origin_input[3]
-
-        board.print(squadron_classes[board.positions[origin_coordinates[0]][origin_coordinates[1]]].move_range, origin_coordinates)
+        board.print(coordinates_in_range)
 
         print(f'To what position in the specified range would you like to move?')
 
-    #board.print(squadron_classes[board.positions[2][2]].attack_range, [2, 2])
+        next_display = ''
+        next_coordinates = []
+        next_taken = True
+        next_in_range = False
 
+        while next_taken or not next_in_range:
+            next_input = get_position_input(board)
+
+            next_display = next_input[0]
+            next_coordinates = next_input[1]
+            next_taken = next_input[2]
+            next_in_range = True if next_coordinates in coordinates_in_range else False
+
+        move_squadron(board, origin_coordinates, next_coordinates)
+
+        board.print([])
+
+        print(f'{fore.green}{style.bold}{squadron.name}{style.none}{fore.white} squadron has moved: {fore.blue}{style.bold}{origin_display} - {next_display}{style.none}{fore.white}')
+
+    if action == 'a':
+        squadron = squadron_classes[board.positions[origin_coordinates[0]][origin_coordinates[1]]]
+        coordinates_in_range = get_coordinates_in_range(board, origin_coordinates, squadron.attack_range)
+
+        board.print(coordinates_in_range)
+
+        print(f'What enemy in the specified range would you like to attack?')
+
+        next_display = ''
+        next_coordinates = []
+        next_is_enemy = False
+        next_in_range = False
+
+        while not next_is_enemy or not next_in_range:
+            next_input = get_position_input(board)
+
+            next_display = next_input[0]
+            next_coordinates = next_input[1]
+            next_is_enemy = next_input[3]
+            next_in_range = True if next_coordinates in coordinates_in_range else False
+
+        enemy_squadron = squadron_classes[board.positions[next_coordinates[0]][next_coordinates[1]]]
+        bonus = False
+
+        if enemy_squadron.name in squadron.bonus_against:
+            bonus = True
+
+        attack_squadron(board, squadron, next_coordinates, bonus)
+
+    battle_user_turn(board)
 
 
 def battle(user_squadrons, enemy_configuration):
@@ -140,12 +212,16 @@ def battle(user_squadrons, enemy_configuration):
         board_width
     )
 
-    board.print(0, [0, 0])
+    board.positions[0][0] = 'A'
+    board.healths[0][0] = '100'
+    board.army[0][0] = 'E'
+
+    board.print([])
 
     # Choose starting configuration
     for key in user_squadrons:
         for i in range(user_squadrons[key]):
-            print(f'Choose a position for {style.bold}{fore.green}{key}{style.none}{fore.white} #{i + 1}.')
+            print(f'Choose a position for {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1}.')
             display = ''
             coordinates = []
             position_taken = True
@@ -162,9 +238,9 @@ def battle(user_squadrons, enemy_configuration):
             board.army[coordinates[0]][coordinates[1]] = 'U'
 
             print('')
-            board.print(0, [0, 0])
+            board.print([])
 
-            print(f'Imported {style.bold}{fore.green}{key}{style.none}{fore.white} #{i + 1} at {style.bold}{fore.blue}{display}{style.none}{fore.white}.')
+            print(f'Imported {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1} at {style.bold}{fore.blue}{display}{style.none}{fore.white}.')
 
     # Battle!
     battle_user_turn(board)
