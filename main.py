@@ -3,8 +3,8 @@ from enemy import enemy_configurations
 import string
 import random
 
-board_height = 9
-board_width = 9
+board_height = 7
+board_width = 7
 
 class Board:
     def __init__(self, positions, healths, army, width, height):
@@ -42,7 +42,6 @@ class Board:
         print(f'{style.bold}{fore.white}POSITION BOARD')
         self.print_board(self.positions, coordinates_in_range)
 
-
     def get_evaluation(self):
         s = 0
 
@@ -72,7 +71,7 @@ class Board:
         if enemy_squadron.name in squadron.bonus_against:
             bonus = True
 
-        self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - (squadron.damage + squadron.bonus_damage) if bonus else squadron.damage))
+        self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - ((squadron.damage + squadron.bonus_damage) if bonus else squadron.damage)))
 
     def get_coordinates_in_range(self, origin, action, action_range):
         # Get the coordinates in a specified range of an origin point
@@ -83,7 +82,7 @@ class Board:
         elif action == 'a':
             return [[i, j] for i in range(self.width) for j in range(self.height)
                     if (abs(i - origin[0]) <= action_range and abs(j - origin[1]) <= action_range)
-                    and action_range > 0 and self.army[i][j] == 'E']
+                    and action_range > 0 and self.army[i][j] == ('E' if self.army[origin[0]][origin[1]] == 'U' else 'U')]
 
 
 class SquadronClass:
@@ -107,11 +106,11 @@ squadron_classes = {
 
 def main():
     battle_squadrons = {
-        'A': 1,
-        'F': 0,
-        'M': 0,
-        'C': 0,
-        'S': 0
+        'A': 2,
+        'F': 3,
+        'M': 1,
+        'C': 2,
+        'S': 1
     }
 
     battle(battle_squadrons)
@@ -144,12 +143,10 @@ def get_position_input(board):
 
                 return [result, coordinates, taken, is_enemy]
 
-def battle_user_turn(board, test = None):
+def battle_user_turn(board):
     print(f'{style.under}{fore.white}USER TURN{style.none}{fore.white}')
 
     board.print([])
-    print(test)
-    print(board.get_evaluation())
 
     print(f'{style.none}{fore.white}Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
 
@@ -241,7 +238,7 @@ def battle_user_turn(board, test = None):
         # Attack enemy squadron
         board.attack_squadron(squadron, next_coordinates)
 
-    battle_user_turn((minimax(board, 3, float('-inf'), float('inf'), True))[0], (minimax(board, 3, float('-inf'), float('inf'), True))[1])
+    battle_user_turn((minimax(board, 3, float('-inf'), float('inf'), True))[1])
 
 
 def battle(user_squadrons):
@@ -254,7 +251,7 @@ def battle(user_squadrons):
     )
 
     # Make a random pre-made enemy army configuration on the board
-    enemy_configuration = enemy_configurations[random.randrange(0, len(enemy_configurations) - 1)]
+    enemy_configuration = enemy_configurations[random.randrange(0, len(enemy_configurations))]
 
     board.positions = enemy_configuration
     board.healths = [[str(squadron_classes[y].health) if y in squadron_classes else '-' for y in x] for x in board.positions]
@@ -292,7 +289,6 @@ def battle(user_squadrons):
 
 
 # Enemy AI using minimax and alpha-beta pruning algorithms
-
 def get_board_children(parent, enemy_turn):
     # Declare variables depending on who's turn it is
     army = 'E' if enemy_turn else 'U'
@@ -336,11 +332,10 @@ def get_board_children(parent, enemy_turn):
 def minimax(board, depth, alpha, beta, enemy_turn):
     # A minimax algorithm using recursive functions to iterate through all possible moves of a parent board.
     # If depth is zero or game is over in that board then it returns the static evaluation of the current child board to its parent board.
-    best_option = 0
 
     #or """game over in this board"""
     if depth == 0:
-        return [best_option, board.get_evaluation()]
+        return board.get_evaluation(), board
 
     children = get_board_children(board, enemy_turn)
 
@@ -349,31 +344,33 @@ def minimax(board, depth, alpha, beta, enemy_turn):
     # algorithm's depth.
     if enemy_turn:
         max_evaluation = float('-inf')
+        best_child = None
         for child in children:
-            evaluation = minimax(child, depth - 1, alpha, beta, False)[1]
-            max_evaluation = max(max_evaluation, evaluation)
-            if evaluation == max_evaluation:
-                best_option = child
+            evaluation, _ = minimax(child, depth - 1, alpha, beta, False)
+            #print(f"Evaluating child: {child}, Evaluation: {evaluation}")
+            if evaluation > max_evaluation:
+                max_evaluation = evaluation
+                best_child = child
 
             alpha = max(alpha, evaluation)
             if beta <= alpha:
                 break
 
-        return [best_option, max_evaluation]
+        return max_evaluation, best_child
 
     else:
         min_evaluation = float('inf')
+        best_child = None
         for child in children:
-            evaluation = minimax(child, depth - 1, alpha, beta, True)[1]
-            min_evaluation = min(min_evaluation, evaluation)
-            if evaluation == min_evaluation:
-                best_option = child
+            evaluation, _ = minimax(child, depth - 1, alpha, beta, True)
+            if evaluation < min_evaluation:
+                min_evaluation = evaluation
+                best_child = child
 
             beta = min(beta, evaluation)
             if beta <= alpha:
                 break
 
-        return [best_option, min_evaluation]
-
+        return min_evaluation, best_child
 
 main()
