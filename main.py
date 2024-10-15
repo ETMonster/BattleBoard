@@ -5,6 +5,9 @@ import random
 
 board_height = 7
 board_width = 7
+original_depth = 2
+
+range_cache = {}
 
 class Board:
     def __init__(self, positions, healths, army, width, height):
@@ -43,14 +46,16 @@ class Board:
         self.print_board(self.positions, coordinates_in_range)
 
     def get_evaluation(self):
-        s = 0
+        e = 0
 
         for i in range(self.width):
             for j in range(self.height):
                 if self.healths[i][j] != '-':
-                    s += int(self.healths[i][j]) if self.army[i][j] == 'E' else -int(self.healths[i][j])
+                    e += int(self.healths[i][j]) if self.army[i][j] == 'E' else -int(self.healths[i][j])
 
-        return s
+        print(e)
+
+        return e
 
     def move_squadron(self, origin, desired):
         # Move origin attributes to desired position
@@ -103,14 +108,42 @@ squadron_classes = {
     'M': SquadronClass('Mage', 200, 3, 2, 30, 40, ['Spearman', 'Cavalier'])
 }
 
+"""def calculate_range_cache():
+    board = Board(
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
+        board_width, board_height
+    )
+
+    actions = ['m', 'a']
+    print('hi')
+
+    with open('range_cache.txt', 'a') as f:
+        for i in range(board_height):
+            for j in range(board_width):
+                for squadron in squadron_classes:
+                    for action in actions:
+                        key = (i, j, squadron, action)
+
+                        if key not in range_cache:
+                            if action == 'a':
+                                range_cache[key] = board.get_coordinates_in_range([i, j], 'a', squadron_classes[squadron].attack_range)
+                            else:
+                                range_cache[key] = board.get_coordinates_in_range([i, j], 'm', squadron_classes[squadron].attack_range)
+
+                        f.write(f'{str(key)}:{str(range_cache[key])}\n')
+                        print(f'{str(key)}:{str(range_cache[key])}\n')"""
 
 def main():
+    #calculate_range_cache()
+
     battle_squadrons = {
-        'A': 2,
-        'F': 3,
-        'M': 1,
-        'C': 2,
-        'S': 1
+        'A': 1,
+        'F': 0,
+        'M': 0,
+        'C': 0,
+        'S': 0
     }
 
     battle(battle_squadrons)
@@ -238,15 +271,16 @@ def battle_user_turn(board):
         # Attack enemy squadron
         board.attack_squadron(squadron, next_coordinates)
 
-    battle_user_turn((minimax(board, 3, float('-inf'), float('inf'), True))[1])
+    print(f'{fore.white}{style.bold}Enemy calculating move...{style.none}{fore.white}')
+    battle_user_turn((minimax(board, original_depth, float('-inf'), float('inf'), True))[1])
 
 
 def battle(user_squadrons):
     # Generate an empty board
     board = Board(
-        [['-' for _ in range(board_width)]for _ in range(board_height)],
-        [['-' for _ in range(board_width)]for _ in range(board_height)],
-        [['-' for _ in range(board_width)]for _ in range(board_height)],
+        [['-' for _ in range(board_height)]for _ in range(board_width)],
+        [['-' for _ in range(board_height)]for _ in range(board_width)],
+        [['-' for _ in range(board_height)]for _ in range(board_width)],
         board_width, board_height
     )
 
@@ -315,7 +349,7 @@ def get_board_children(parent, enemy_turn):
 
                 children.append(child)
 
-            for coordinate in parent.get_coordinates_in_range([i, j], 'm', squadron.move_range):
+            for coordinate in parent.get_coordinates_in_range([i, j], 'm', squadron.attack_range):
                 child = Board(
                     [[y for y in x] for x in parent.positions],
                     [[y for y in x] for x in parent.healths],
@@ -328,6 +362,15 @@ def get_board_children(parent, enemy_turn):
                 children.append(child)
 
     return children
+
+
+
+
+# USE ITERATIVE DEEPENING
+
+
+
+
 
 def minimax(board, depth, alpha, beta, enemy_turn):
     # A minimax algorithm using recursive functions to iterate through all possible moves of a parent board.
