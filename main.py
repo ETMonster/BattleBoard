@@ -1,5 +1,3 @@
-from idlelib.pyparse import trans
-
 from text import *
 from enemy import enemy_configurations
 import string
@@ -10,6 +8,7 @@ board_width = 7
 max_depth = 5
 
 transposition_table = {}
+
 
 class Board:
     def __init__(self, positions, healths, army, width, height):
@@ -28,7 +27,7 @@ class Board:
 
         for i in range(self.height):
             print(f'{style.bold}{fore.blue}{i + 1}', end='')
-            print('  ', end = '')
+            print('  ', end='')
             for j in range(self.width):
                 a = self.army[i][j]
                 print(f'{style.none}'
@@ -40,12 +39,18 @@ class Board:
 
         print('')
 
-    def print(self, coordinates_in_range):
+    def print(self, coordinates_in_range=None):
+        if coordinates_in_range is None:
+            coordinates_in_range = []
+
         print(f'{style.bold}{fore.white}HEALTH BOARD')
         self.print_board(self.healths, coordinates_in_range)
 
         print(f'{style.bold}{fore.white}POSITION BOARD')
         self.print_board(self.positions, coordinates_in_range)
+
+        print(f'{style.bold}{fore.white}ARMY BOARD')
+        self.print_board(self.army, coordinates_in_range)
 
     def get_evaluation(self):
         e = 0
@@ -76,7 +81,8 @@ class Board:
         if enemy_squadron.name in squadron.bonus_against:
             bonus = True
 
-        self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - ((squadron.damage + squadron.bonus_damage) if bonus else squadron.damage)))
+        self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - (
+            (squadron.damage + squadron.bonus_damage) if bonus else squadron.damage)))
 
     def get_coordinates_in_range(self, origin, action, action_range):
         # Get the coordinates in a specified range of an origin point
@@ -87,7 +93,8 @@ class Board:
         elif action == 'a':
             return [[i, j] for i in range(self.width) for j in range(self.height)
                     if (abs(i - origin[0]) <= action_range and abs(j - origin[1]) <= action_range)
-                    and action_range > 0 and self.army[i][j] == ('E' if self.army[origin[0]][origin[1]] == 'U' else 'U')]
+                    and action_range > 0 and self.army[i][j] == (
+                        'E' if self.army[origin[0]][origin[1]] == 'U' else 'U')]
 
 
 class SquadronClass:
@@ -99,6 +106,7 @@ class SquadronClass:
         self.damage = damage
         self.bonus_damage = bonus_damage
         self.bonus_against = bonus_against
+
 
 squadron_classes = {
     'A': SquadronClass('Archer', 100, 4, 1, 60, 30, ['Spearman', 'Footman']),
@@ -135,13 +143,14 @@ squadron_classes = {
                         f.write(f'{str(key)}:{str(range_cache[key])}\n')
                         print(f'{str(key)}:{str(range_cache[key])}\n')"""
 
+
 def main():
-    #calculate_range_cache()
+    # calculate_range_cache()
 
     battle_squadrons = {
-        'A': 1,
+        'A': 0,
         'F': 0,
-        'M': 0,
+        'M': 1,
         'C': 0,
         'S': 0
     }
@@ -155,6 +164,7 @@ def convert_display_to_coordinates(position):
     y = ord(position[0].lower()) - 97
 
     return [x, y]
+
 
 def get_position_input(board):
     # Returns a valid display position, board coordinate, and whether the spot is taken
@@ -176,12 +186,14 @@ def get_position_input(board):
 
                 return [result, coordinates, taken, is_enemy]
 
+
 def battle_user_turn(board):
     print(f'{style.under}{fore.white}USER TURN{style.none}{fore.white}')
 
-    board.print([])
+    board.print()
 
-    print(f'{style.none}{fore.white}Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
+    print(
+        f'{style.none}{fore.white}Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
 
     # Get action that user desires to make
     action = input()
@@ -213,7 +225,8 @@ def battle_user_turn(board):
 
         # Check if there are no possible movements
         if len(coordinates_in_range) == 0:
-            print(f'{style.none}{fore.white}No possible moves for squadron at {origin_display}. Try a different action or squadron.\n')
+            print(
+                f'{style.none}{fore.white}No possible moves for squadron at {origin_display}. Try a different action or squadron.\n')
             battle_user_turn(board)
 
         # Get desired movement destination
@@ -237,9 +250,10 @@ def battle_user_turn(board):
         # Move squadron
         board.move_squadron(origin_coordinates, next_coordinates)
 
-        board.print([])
+        board.print()
 
-        print(f'{fore.green}{style.bold}{squadron.name}{style.none}{fore.white} squadron has moved: {fore.blue}{style.bold}{origin_display} - {next_display}{style.none}{fore.white}')
+        print(
+            f'{fore.green}{style.bold}{squadron.name}{style.none}{fore.white} squadron has moved: {fore.blue}{style.bold}{origin_display} - {next_display}{style.none}{fore.white}')
 
     if action == 'a':
         # Get the coordinates in range for the squadron to attack
@@ -247,7 +261,8 @@ def battle_user_turn(board):
 
         # Check if there are possible attacks
         if len(coordinates_in_range) == 0:
-            print(f'{style.none}{fore.white}No possible attacks for squadron at {origin_display}. Try a different action or squadron.\n')
+            print(
+                f'{style.none}{fore.white}No possible attacks for squadron at {origin_display}. Try a different action or squadron.\n')
             battle_user_turn(board)
 
         # Get desired enemy to attack
@@ -272,15 +287,15 @@ def battle_user_turn(board):
         board.attack_squadron(squadron, next_coordinates)
 
     print(f'{fore.white}{style.bold}Enemy calculating move...{style.none}{fore.white}')
-    battle_user_turn((minimax(board, max_depth, float('-inf'), float('inf'), True))[1])
+    battle_user_turn((minimax(board, float('-inf'), float('inf'), True))[1])
 
 
 def battle(user_squadrons):
     # Generate an empty board
     board = Board(
-        [['-' for _ in range(board_height)]for _ in range(board_width)],
-        [['-' for _ in range(board_height)]for _ in range(board_width)],
-        [['-' for _ in range(board_height)]for _ in range(board_width)],
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
+        [['-' for _ in range(board_height)] for _ in range(board_width)],
         board_width, board_height
     )
 
@@ -288,15 +303,17 @@ def battle(user_squadrons):
     enemy_configuration = enemy_configurations[random.randrange(0, len(enemy_configurations))]
 
     board.positions = enemy_configuration
-    board.healths = [[str(squadron_classes[y].health) if y in squadron_classes else '-' for y in x] for x in board.positions]
+    board.healths = [[str(squadron_classes[y].health) if y in squadron_classes else '-' for y in x] for x in
+                     board.positions]
     board.army = [['E' if y != '-' else '-' for y in x] for x in board.positions]
 
-    board.print([])
+    board.print()
 
     # Choose starting configuration
     for key in user_squadrons:
         for i in range(user_squadrons[key]):
-            print(f'{style.none}{fore.white}Choose a position for {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1}.')
+            print(
+                f'{style.none}{fore.white}Choose a position for {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1}.')
             display = ''
             coordinates = []
             position_taken = True
@@ -313,9 +330,10 @@ def battle(user_squadrons):
             board.army[coordinates[0]][coordinates[1]] = 'U'
 
             print('')
-            board.print([])
+            board.print()
 
-            print(f'{style.none}{fore.white}Imported {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1} at {style.bold}{fore.blue}{display}{style.none}{fore.white}.')
+            print(
+                f'{style.none}{fore.white}Imported {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1} at {style.bold}{fore.blue}{display}{style.none}{fore.white}.')
 
     # Battle!
 
@@ -325,60 +343,59 @@ def battle(user_squadrons):
 # Enemy AI using minimax and alpha-beta pruning algorithms
 def get_board_children(parent, enemy_turn):
     # Declare variables depending on who's turn it is
-    army = 'E' if enemy_turn else 'U'
+    desired_army = 'E' if enemy_turn else 'U'
     children = []
 
     # Loop through all squadrons
     for i in range(parent.width):
         for j in range(parent.height):
-            if parent.army[i][j] != army:
+            if parent.army[i][j] != desired_army:
                 continue
+            else:
+                # Loop through each possible coordinate in the move or attack range for one squadron
+                squadron = squadron_classes[parent.positions[i][j]]
 
-            # Loop through each possible coordinate in the move or attack range for one squadron
-            squadron = squadron_classes[parent.positions[i][j]]
+                for coordinate in parent.get_coordinates_in_range([i, j], 'a', squadron.attack_range):
+                    child = Board(
+                        [[y for y in x] for x in parent.positions],
+                        [[y for y in x] for x in parent.healths],
+                        [[y for y in x] for x in parent.army],
+                        parent.width, parent.height
+                    )
 
-            for coordinate in parent.get_coordinates_in_range([i, j], 'a', squadron.attack_range):
-                child = Board(
-                    [[y for y in x] for x in parent.positions],
-                    [[y for y in x] for x in parent.healths],
-                    [[y for y in x] for x in parent.army],
-                    parent.width, parent.height
-                )
+                    child.attack_squadron(squadron, coordinate)
+                    children.append(child)
 
-                child.attack_squadron(squadron, coordinate)
+                for coordinate in parent.get_coordinates_in_range([i, j], 'm', squadron.move_range):
+                    child = Board(
+                        [[y for y in x] for x in parent.positions],
+                        [[y for y in x] for x in parent.healths],
+                        [[y for y in x] for x in parent.army],
+                        parent.width, parent.height
+                    )
 
-                children.append(child)
-
-            for coordinate in parent.get_coordinates_in_range([i, j], 'm', squadron.attack_range):
-                child = Board(
-                    [[y for y in x] for x in parent.positions],
-                    [[y for y in x] for x in parent.healths],
-                    [[y for y in x] for x in parent.army],
-                    parent.width, parent.height
-                )
-
-                child.move_squadron([i, j], coordinate)
-
-                children.append(child)
+                    child.move_squadron([i, j], coordinate)
+                    children.append(child)
 
     return children
 
-"""or (evaluation < board.get_evaluation() and not enemy_turn)"""
 
-def minimax(board, max_depth, alpha, beta, enemy_turn):
+def minimax(board, alpha, beta, enemy_turn):
     best_child = None
     evaluation = board.get_evaluation()
 
     for depth in range(1, max_depth + 1):
-        print(evaluation, board.get_evaluation())
-
-        if (evaluation > board.get_evaluation() and enemy_turn):
+        if (evaluation > board.get_evaluation() and enemy_turn) or (evaluation < board.get_evaluation() and not enemy_turn):
             break
 
         evaluation, best_child = minimax_iteration(board, depth, alpha, beta, enemy_turn)
         alpha = max(alpha, evaluation)
 
+        print(evaluation, board.get_evaluation(), depth)
+        best_child.print()
+
     return evaluation, best_child
+
 
 def minimax_iteration(board, depth, alpha, beta, enemy_turn):
     # A minimax algorithm using recursive functions to iterate through all possible moves of a parent board.
@@ -388,7 +405,7 @@ def minimax_iteration(board, depth, alpha, beta, enemy_turn):
     if (board_hash, depth) in transposition_table:
         return transposition_table[(board_hash, depth)]
 
-    #or """game over in this board"""
+    # or """game over in this board"""
     if depth == 0:
         return board.get_evaluation(), board
 
@@ -428,5 +445,6 @@ def minimax_iteration(board, depth, alpha, beta, enemy_turn):
 
         transposition_table[(board_hash, depth)] = (min_evaluation, best_child)
         return min_evaluation, best_child
+
 
 main()
