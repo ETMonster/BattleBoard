@@ -1,3 +1,5 @@
+from idlelib.pyparse import trans
+
 from text import *
 from enemy import enemy_configurations
 import string
@@ -5,9 +7,9 @@ import random
 
 board_height = 7
 board_width = 7
-original_depth = 2
+max_depth = 5
 
-range_cache = {}
+transposition_table = {}
 
 class Board:
     def __init__(self, positions, healths, army, width, height):
@@ -52,8 +54,6 @@ class Board:
             for j in range(self.height):
                 if self.healths[i][j] != '-':
                     e += int(self.healths[i][j]) if self.army[i][j] == 'E' else -int(self.healths[i][j])
-
-        print(e)
 
         return e
 
@@ -272,7 +272,7 @@ def battle_user_turn(board):
         board.attack_squadron(squadron, next_coordinates)
 
     print(f'{fore.white}{style.bold}Enemy calculating move...{style.none}{fore.white}')
-    battle_user_turn((minimax(board, original_depth, float('-inf'), float('inf'), True))[1])
+    battle_user_turn((minimax(board, max_depth, float('-inf'), float('inf'), True))[1])
 
 
 def battle(user_squadrons):
@@ -363,18 +363,30 @@ def get_board_children(parent, enemy_turn):
 
     return children
 
+"""or (evaluation < board.get_evaluation() and not enemy_turn)"""
 
+def minimax(board, max_depth, alpha, beta, enemy_turn):
+    best_child = None
+    evaluation = board.get_evaluation()
 
+    for depth in range(1, max_depth + 1):
+        print(evaluation, board.get_evaluation())
 
-# USE ITERATIVE DEEPENING
+        if (evaluation > board.get_evaluation() and enemy_turn):
+            break
 
+        evaluation, best_child = minimax_iteration(board, depth, alpha, beta, enemy_turn)
+        alpha = max(alpha, evaluation)
 
+    return evaluation, best_child
 
-
-
-def minimax(board, depth, alpha, beta, enemy_turn):
+def minimax_iteration(board, depth, alpha, beta, enemy_turn):
     # A minimax algorithm using recursive functions to iterate through all possible moves of a parent board.
     # If depth is zero or game is over in that board then it returns the static evaluation of the current child board to its parent board.
+
+    board_hash = hash(board)
+    if (board_hash, depth) in transposition_table:
+        return transposition_table[(board_hash, depth)]
 
     #or """game over in this board"""
     if depth == 0:
@@ -389,8 +401,7 @@ def minimax(board, depth, alpha, beta, enemy_turn):
         max_evaluation = float('-inf')
         best_child = None
         for child in children:
-            evaluation, _ = minimax(child, depth - 1, alpha, beta, False)
-            #print(f"Evaluating child: {child}, Evaluation: {evaluation}")
+            evaluation, _ = minimax_iteration(child, depth - 1, alpha, beta, False)
             if evaluation > max_evaluation:
                 max_evaluation = evaluation
                 best_child = child
@@ -399,13 +410,14 @@ def minimax(board, depth, alpha, beta, enemy_turn):
             if beta <= alpha:
                 break
 
+        transposition_table[(board_hash, depth)] = (max_evaluation, best_child)
         return max_evaluation, best_child
 
     else:
         min_evaluation = float('inf')
         best_child = None
         for child in children:
-            evaluation, _ = minimax(child, depth - 1, alpha, beta, True)
+            evaluation, _ = minimax_iteration(child, depth - 1, alpha, beta, True)
             if evaluation < min_evaluation:
                 min_evaluation = evaluation
                 best_child = child
@@ -414,6 +426,7 @@ def minimax(board, depth, alpha, beta, enemy_turn):
             if beta <= alpha:
                 break
 
+        transposition_table[(board_hash, depth)] = (min_evaluation, best_child)
         return min_evaluation, best_child
 
 main()
