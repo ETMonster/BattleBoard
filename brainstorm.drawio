@@ -1,0 +1,439 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
+  <diagram name="Page-1" id="LLHr5reggwAghq3CUUuB">
+    <mxGraphModel dx="1195" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-1" target="nDnPipDTX__lZtJsyPZ6-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-1" value="Start game" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="360" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="nDnPipDTX__lZtJsyPZ6-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="419.9999999999998" y="440" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-2" target="nDnPipDTX__lZtJsyPZ6-42" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-2" value="Choose name of nation and difficulty" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="360" y="290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-7" target="nDnPipDTX__lZtJsyPZ6-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-7" target="nDnPipDTX__lZtJsyPZ6-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-7" value="Battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="360" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-9" target="nDnPipDTX__lZtJsyPZ6-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="nDnPipDTX__lZtJsyPZ6-9" target="d4Snxb7S1tcMy_HiNzXj-54" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-9" value="First time playing?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="360" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-12" target="nDnPipDTX__lZtJsyPZ6-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-12" value="Yes" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="190" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-17" target="nDnPipDTX__lZtJsyPZ6-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-17" value="Tutorial battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="510" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-22" target="nDnPipDTX__lZtJsyPZ6-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-22" target="nDnPipDTX__lZtJsyPZ6-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-22" target="nDnPipDTX__lZtJsyPZ6-35" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="630" />
+              <mxPoint x="720" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-22" target="nDnPipDTX__lZtJsyPZ6-32" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-22" target="nDnPipDTX__lZtJsyPZ6-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="630" />
+              <mxPoint x="120" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-22" value="Choose squadrons for battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="360" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-24" target="nDnPipDTX__lZtJsyPZ6-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-24" value="Choose to gain potential intelligence on enemy squadrons by sending out one of your squadrons (Chance to lose your squadron)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="510" y="440" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-30" target="nDnPipDTX__lZtJsyPZ6-53" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="860" />
+              <mxPoint x="360" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-30" value="&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Archer Squadron&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;Health: 100hp&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Attack Range: 4 tiles&lt;/div&gt;&lt;div&gt;Move Range: 1 tiles&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Normal Damage: -60hp&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Strong against: Spearmen, Footmen&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Bonus Damage: -30hp&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="50" y="670" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-32" target="nDnPipDTX__lZtJsyPZ6-53" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="840" />
+              <mxPoint x="390" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-32" value="&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Footmen Squadron&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;Health: 350hp&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Attack Range: 1 tiles&lt;/div&gt;&lt;div&gt;Move Range: 2 tiles&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Damage: -45 hp&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Strong against: Mages, Archers&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Bonus Damage: -30hp&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="200" y="670" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-33" target="nDnPipDTX__lZtJsyPZ6-53" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-33" value="&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Spearmen Squadron&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;Health: 650hp&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Attack Range: 1 tiles&lt;/div&gt;&lt;div&gt;Move Range: 1 tiles&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Damage: -10 hp&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Strong against: Cavaliers,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Footmen&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Bonus Damage: -100hp&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="350" y="670" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-34" target="nDnPipDTX__lZtJsyPZ6-53" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="840" />
+              <mxPoint x="450" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-34" value="&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Cavalier Squadron&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;Health: 500hp&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Attack Range: 1 tiles&lt;/div&gt;&lt;div&gt;Move Range: 4 tiles&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Damage: -50 hp&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Strong against: Archers, Mages&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Bonus Damage: -30hp&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="500" y="670" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-35" target="nDnPipDTX__lZtJsyPZ6-53" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="860" />
+              <mxPoint x="480" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-35" value="&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Mage Squadron&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;Health: 200hp&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Attack Range: 3 tiles&lt;/div&gt;&lt;div&gt;Move Range: 2 tiles&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Damage: -30 hp&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Strong against: Spearmen, Cavaliers&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Bonus Damage: -40hp&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="650" y="670" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-42" value="Train new squadrons (Maximum amount is amount lost in prev. battle)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="360" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-53" target="d4Snxb7S1tcMy_HiNzXj-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-53" value="Choose squadron positions in battle (input coordinates)&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="360" y="880" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-59" value="&lt;div&gt;&lt;font color=&quot;#009900&quot;&gt;Green &lt;/font&gt;= Friendly spuadron&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#990000&quot;&gt;Red&lt;/font&gt; = Enemy squadron&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;A = Archer squadron&lt;div&gt;F = Footmen squadron&lt;/div&gt;&lt;div&gt;S = Spearmen squadron&lt;/div&gt;&lt;div&gt;C = Cavalier squadron&lt;/div&gt;&lt;div&gt;M = Mage squadron&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="960" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-62" target="d4Snxb7S1tcMy_HiNzXj-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="1130" />
+              <mxPoint x="350" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-62" target="d4Snxb7S1tcMy_HiNzXj-27" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="1280" />
+              <mxPoint x="340" y="1280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="nDnPipDTX__lZtJsyPZ6-62" target="d4Snxb7S1tcMy_HiNzXj-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="1280" />
+              <mxPoint x="500" y="1280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nDnPipDTX__lZtJsyPZ6-62" value="Enemy/user turn to move squadrons or attack opposition squadrons (5 moves maximum) (Cannot move to another squadron&#39;s position). Player can also choose if they want to retreat." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="360" y="1090" width="120" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-2" target="d4Snxb7S1tcMy_HiNzXj-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-2" target="d4Snxb7S1tcMy_HiNzXj-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-2" value="Is opposition squadron under or equal to 0 health?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="210" y="1090" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-5" target="nDnPipDTX__lZtJsyPZ6-62" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-5" value="Print/update position board (position of squadrons) and health board (health of squadrons)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="360" y="970" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-10" target="d4Snxb7S1tcMy_HiNzXj-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="1015" />
+              <mxPoint x="350" y="1015" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-10" value="Squadron ceases to exist - is removed from boards and future battle selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="210" y="960" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-11" target="d4Snxb7S1tcMy_HiNzXj-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-11" value="Yes" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="245" y="1050" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-16" target="d4Snxb7S1tcMy_HiNzXj-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1120" as="targetPoint" />
+            <mxPoint x="129.9999999999999" y="980.0000000000002" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="175" y="940" />
+              <mxPoint x="340" y="940" />
+              <mxPoint x="340" y="1015" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-16" value="No" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="150" y="1050" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-21" target="d4Snxb7S1tcMy_HiNzXj-31" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="1410" />
+              <mxPoint x="340" y="1410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-21" value="Are there opposition squadrons left on the board?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="440" y="1300" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-27" target="d4Snxb7S1tcMy_HiNzXj-30" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="1410" />
+              <mxPoint x="500" y="1410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-27" value="Retreat?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="280" y="1300" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-30" target="d4Snxb7S1tcMy_HiNzXj-61" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-30" value="User wins battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="440" y="1460" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-31" target="d4Snxb7S1tcMy_HiNzXj-63" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-31" value="Enemy wins battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="280" y="1460" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-51" value="Enemy squadron battle positions are randomized from a list of configurations" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="880" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-54" target="nDnPipDTX__lZtJsyPZ6-42" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="200" />
+              <mxPoint x="270" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-54" value="No" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="290" y="190" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-61" target="nDnPipDTX__lZtJsyPZ6-42" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="840" y="1610" />
+              <mxPoint x="840" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-61" value="Next game difficulty slightly more difficult" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="440" y="1580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-63" target="nDnPipDTX__lZtJsyPZ6-42" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="840" y="400" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="340" y="1660" />
+              <mxPoint x="841" y="1660" />
+              <mxPoint x="841" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-63" value="Next game difficulty the same" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="280" y="1580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-68" value="If user wins ten games, they successfully defeat the enemy nation and beat the game." style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="650" y="310" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-69" value="Game Flowchart" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="365" y="38" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-70" value="Enemy AI Flowchart" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="965" y="38" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-71" target="d4Snxb7S1tcMy_HiNzXj-73" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-71" value="Start battle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="970" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-72" value="Move/attack range is calculated by checking if the difference of the desired coordinates and the current coordinates of a squadron are over the specified range." style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="1150" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-73" target="d4Snxb7S1tcMy_HiNzXj-77" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-73" target="d4Snxb7S1tcMy_HiNzXj-74" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-73" value="Evaluate game board using the following algorithm:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Eval. = (sum of all enemy squadron health - sum of all user squadron health)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="950" y="170" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-74" value="For example:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Eval. = 500 - 400&lt;/div&gt;&lt;div&gt;= +100 (game in enemy favor)&lt;/div&gt;&lt;div&gt;OR&lt;/div&gt;&lt;div&gt;Eval. = 700 - 900&lt;/div&gt;&lt;div&gt;= -200 (game in user favor)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1195" y="160" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-77" target="d4Snxb7S1tcMy_HiNzXj-82" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-77" value="Calculate all possible moves from the specified position and evaluate. The child node with the value that represents the worst possible outcome returns to the parent node. Continue this process." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="950" y="300" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-82" target="d4Snxb7S1tcMy_HiNzXj-89" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-82" target="d4Snxb7S1tcMy_HiNzXj-92" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-82" value="Has the algorithm reached its depth?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="970" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dlJPksAmFi5uVIDbyFi5-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-89" target="dlJPksAmFi5uVIDbyFi5-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-89" value="Yes" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1005" y="530" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-92" target="d4Snxb7S1tcMy_HiNzXj-77" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-92" value="No" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1125" y="460" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-97" value="Example of a minimax algorithm" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1321.5" y="305" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-98" target="d4Snxb7S1tcMy_HiNzXj-101" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-98" target="d4Snxb7S1tcMy_HiNzXj-99" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-98" value="Current position (-50)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1366.5" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-99" target="d4Snxb7S1tcMy_HiNzXj-106" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-99" target="d4Snxb7S1tcMy_HiNzXj-104" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-99" value="Move 1 (&lt;font color=&quot;#ff0000&quot;&gt;-80&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1269" y="410" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-118" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-101" target="d4Snxb7S1tcMy_HiNzXj-111" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-101" target="d4Snxb7S1tcMy_HiNzXj-109" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-101" value="Move 2 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1494" y="410" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-104" value="Move 1.1 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1202.75" y="470" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-105" value="Move 1.2 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1270.25" y="470" width="63.75" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-106" value="Move 1.3 (&lt;font color=&quot;#cc0000&quot;&gt;-80&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1335.25" y="470" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-109" value="Move 2.1 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1427.75" y="470" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-110" value="Move 2.2 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1495.25" y="470" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-111" value="Move 2.3 (&lt;font color=&quot;#4d9900&quot;&gt;-50&lt;/font&gt;)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1560.25" y="470" width="65" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.486;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-99" target="d4Snxb7S1tcMy_HiNzXj-105" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.481;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="d4Snxb7S1tcMy_HiNzXj-101" target="d4Snxb7S1tcMy_HiNzXj-110" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-126" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1195" y="305" width="440" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="d4Snxb7S1tcMy_HiNzXj-127" value="The algorithm will choose the best possible move based on all of their outcomes. In the below example, Move 1 has the worst possible outcome, while Move 2 has the best. This means that the algorithm will choose to play Move 2 instead of Move 1." style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1385" y="160" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dlJPksAmFi5uVIDbyFi5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dlJPksAmFi5uVIDbyFi5-2" target="d4Snxb7S1tcMy_HiNzXj-73" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="610" />
+              <mxPoint x="930" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dlJPksAmFi5uVIDbyFi5-2" value="Play move with the best possible outcome." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="950" y="580" width="160" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
