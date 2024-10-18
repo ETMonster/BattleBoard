@@ -5,7 +5,9 @@ import random
 
 board_height = 6
 board_width = 6
-max_depth = 7
+max_depth = 0
+
+difficulty = 'Normal'
 
 transposition_table = {}
 
@@ -95,7 +97,7 @@ class Board:
         self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - (
             (squadron.damage + squadron.bonus_damage) if bonus else squadron.damage)))
 
-        if self.healths[desired[0]][desired[1]] <= 0:
+        if int(self.healths[desired[0]][desired[1]]) <= 0:
             self.remove_squadron(desired)
 
     def squadrons_left(self):
@@ -136,6 +138,7 @@ class SquadronClass:
 
 
 squadron_classes = {
+    # Print name, health, attack range, move range, default damage, bonus damage, bonus damage against
     'A': SquadronClass('Archer', 100, 4, 1, 60, 30, ['Spearman', 'Footman']),
     'F': SquadronClass('Footman', 350, 1, 2, 45, 30, ['Mage', 'Archer']),
     'S': SquadronClass('Spearman', 650, 1, 1, 10, 100, ['Cavalier', 'Footman']),
@@ -143,6 +146,13 @@ squadron_classes = {
     'M': SquadronClass('Mage', 200, 3, 2, 30, 40, ['Spearman', 'Cavalier'])
 }
 
+difficulty_transposition = {
+    # Maximum AI depth, random move chance, user squadrons, print color code
+    'Easy': [1, 80, 10, fore.green],
+    'Normal': [3, 50, 8, fore.yellow],
+    'Hard': [5, 30, 8, fore.orange],
+    'Impossible': [7, 0, 6, fore.red]
+}
 
 def convert_display_to_coordinates(position):
     # Converts a display position into a board coordinate
@@ -159,7 +169,8 @@ def get_position_input(board):
         is_enemy = True
 
         if len(result) == 2:
-            if result[0] in string.ascii_uppercase[:board.width] and result[1] in str(list(range(1, board.height + 1))):
+            if ((result[0] in string.ascii_uppercase[:board.width] or result[0] in string.ascii_lowercase[:board.width])
+                    and result[1] in str(list(range(1, board.height + 1)))):
 
                 coordinates = convert_display_to_coordinates(result)
 
@@ -172,8 +183,19 @@ def get_position_input(board):
                 return [result, coordinates, taken, is_enemy]
 
 
-def main():
-    # calculate_range_cache()
+def game_over(winner):
+    if winner == 'U':
+        print(f'{style.bold}{fore.white}Congratulations!{style.none}{fore.white} You have defeated the enemy army at '
+              f'{style.bold}{fore.yellow}{difficulty}')
+
+def start_game():
+    print(f'{style.none}{fore.white}Choose a difficulty:')
+    print(f'{fore.green}Easy{fore.white}, {fore.yellow}Normal{fore.white}, {fore.orange}Hard{fore.white}, or {fore.red}Impossible\n')
+
+    while True:
+        difficulty = input()
+        if difficulty not in difficulty_transposition
+
 
     user_squadrons = {
         'A': 1,
@@ -233,9 +255,9 @@ def new_battle(user_squadrons):
 
     # Battle!
 
-    battle_user_turn(board)
+    battle(board)
 
-def battle_user_turn(board):
+def battle(board):
     print(f'{style.under}{fore.white}USER TURN{style.none}{fore.white}')
 
     board.print()
@@ -275,7 +297,7 @@ def battle_user_turn(board):
         if len(coordinates_in_range) == 0:
             print(
                 f'{style.none}{fore.white}No possible moves for squadron at {origin_display}. Try a different action or squadron.\n')
-            battle_user_turn(board)
+            battle(board)
 
         # Get desired movement destination
         board.print(coordinates_in_range)
@@ -311,7 +333,7 @@ def battle_user_turn(board):
         if len(coordinates_in_range) == 0:
             print(
                 f'{style.none}{fore.white}No possible attacks for squadron at {origin_display}. Try a different action or squadron.\n')
-            battle_user_turn(board)
+            battle(board)
 
         # Get desired enemy to attack
         board.print(coordinates_in_range)
@@ -341,7 +363,7 @@ def battle_user_turn(board):
 
     global transposition_table
     transposition_table = {}
-    battle_user_turn((minimax(board, float('-inf'), float('inf'), True))[1])
+    battle((minimax(board, float('-inf'), float('inf'), True))[1])
 
 
 # Enemy AI using minimax and alpha-beta pruning algorithms
@@ -446,6 +468,3 @@ def minimax_iteration(board, depth, alpha, beta, enemy_turn):
 
         transposition_table[(board_hash, depth)] = (min_evaluation, best_child)
         return min_evaluation, best_child
-
-
-main()
