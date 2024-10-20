@@ -13,4 +13,6 @@ print(f'{fore.white} |____/_/    \\_\\_|     |_|  |______|______|      {fore.red
 print(f'\nPress any key to start')
 x = input()
 
+print()
+
 start_game()

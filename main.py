@@ -5,11 +5,11 @@ import random
 
 board_height = 6
 board_width = 6
+
 max_depth = 0
-
-difficulty = 'Normal'
-
-transposition_table = {}
+random_chance = 0
+difficulty = ''
+difficulty_color = ''
 
 class Board:
     def __init__(self, positions, healths, army, width, height):
@@ -51,13 +51,39 @@ class Board:
         self.print_board(self.positions, coordinates_in_range)
 
     def get_evaluation(self):
+        # Returns the sum of all healths on the board (add enemy health, subtract user health)
         e = 0
 
         for i in range(self.width):
             for j in range(self.height):
-                if self.healths[i][j] != '-':
-                    e += int(self.healths[i][j]) if self.army[i][j] == 'E' else -int(self.healths[i][j])
+                if self.army[i][j] == 'U':
+                    e -= int(self.healths[i][j])
+
+        if self.is_game_over()[1] == 'U':
+            e = float('-inf')
+        if self.is_game_over()[1] == 'E':
+            e = float('inf')
+
         return e
+
+    def get_position_input(self):
+        # Returns a valid display position, board coordinate, and whether the spot is taken
+        while True:
+            result = input()
+            taken = True
+            is_enemy = True
+
+            if len(result) == 2:
+                if ((result[0] in string.ascii_uppercase[:self.width] or result[0] in string.ascii_lowercase[:self.width])
+                    and result[1] in str(list(range(1, self.height + 1)))):
+
+                    coordinates = convert_display_to_coordinates(result)
+                    if self.positions[coordinates[0]][coordinates[1]] == '-':
+                        taken = False
+                    if self.army[coordinates[0]][coordinates[1]] != 'E':
+                        is_enemy = False
+
+                    return [result, coordinates, taken, is_enemy]
 
     def get_coordinates_in_range(self, origin, action, action_range):
         # Get the coordinates in a specified range of an origin point
@@ -71,6 +97,7 @@ class Board:
                     and action_range > 0 and self.army[i][j] == ('E' if self.army[origin[0]][origin[1]] == 'U' else 'U')]
 
     def remove_squadron(self, coordinates):
+        # Replaces all instances of origin attributes with an empty space
         self.positions[coordinates[0]][coordinates[1]] = '-'
         self.healths[coordinates[0]][coordinates[1]] = '-'
         self.army[coordinates[0]][coordinates[1]] = '-'
@@ -91,7 +118,7 @@ class Board:
         enemy_squadron = squadron_classes[self.positions[desired[0]][desired[1]]]
         bonus = False
 
-        if enemy_squadron.name in squadron.bonus_against:
+        if enemy_squadron.name == squadron.bonus_against:
             bonus = True
 
         self.healths[desired[0]][desired[1]] = (str(int(self.healths[desired[0]][desired[1]]) - (
@@ -100,7 +127,8 @@ class Board:
         if int(self.healths[desired[0]][desired[1]]) <= 0:
             self.remove_squadron(desired)
 
-    def squadrons_left(self):
+    def is_game_over(self):
+        # Returns if the game is over and the winner
         is_user_squadrons = False
         is_enemy_squadrons = False
 
@@ -108,20 +136,13 @@ class Board:
             for j in range(self.height):
                 if self.army[i][j] == 'U':
                     is_user_squadrons = True
-                    break
-            else:
-                break
-        for i in range(self.width):
-            for j in range(self.height):
                 if self.army[i][j] == 'E':
                     is_enemy_squadrons = True
-                    break
-            else:
-                break
 
         if is_user_squadrons and not is_enemy_squadrons:
             return True, 'U'
-        elif is_enemy_squadrons and not is_user_squadrons:
+
+        if is_enemy_squadrons and not is_user_squadrons:
             return True, 'E'
 
         return False, '-'
@@ -136,22 +157,30 @@ class SquadronClass:
         self.bonus_damage = bonus_damage
         self.bonus_against = bonus_against
 
-
 squadron_classes = {
     # Print name, health, attack range, move range, default damage, bonus damage, bonus damage against
-    'A': SquadronClass('Archer', 100, 4, 1, 60, 30, ['Spearman', 'Footman']),
-    'F': SquadronClass('Footman', 350, 1, 2, 45, 30, ['Mage', 'Archer']),
-    'S': SquadronClass('Spearman', 650, 1, 1, 10, 100, ['Cavalier', 'Footman']),
-    'C': SquadronClass('Cavalier', 500, 1, 4, 50, 30, ['Archer', 'Mage']),
-    'M': SquadronClass('Mage', 200, 3, 2, 30, 40, ['Spearman', 'Cavalier'])
+    'A': SquadronClass('Archer', 100, 4, 1, 95, 30, 'Spearman'),
+    'F': SquadronClass('Footman', 350, 1, 2, 85, 10, 'Archer'),
+    'S': SquadronClass('Spearman', 650, 1, 1, 50, 100, 'Cavalier'),
+    'C': SquadronClass('Cavalier', 500, 1, 3, 90, 30, 'Mage'),
+    'M': SquadronClass('Mage', 200, 3, 2, 70, 40, 'Footman')
+}
+squadron_attributes = {
+    'Name': [s.name for s in squadron_classes.values()],
+    'Health': [s.health for s in squadron_classes.values()],
+    'Attack range': [s.attack_range for s in squadron_classes.values()],
+    'Move range': [s.move_range for s in squadron_classes.values()],
+    'Damage': [s.damage for s in squadron_classes.values()],
+    'Bonus damage': [s.bonus_damage for s in squadron_classes.values()],
+    'Bonus against': [s.bonus_against for s in squadron_classes.values()]
 }
 
 difficulty_transposition = {
-    # Maximum AI depth, random move chance, user squadrons, print color code
-    'Easy': [1, 80, 10, fore.green],
-    'Normal': [3, 50, 8, fore.yellow],
-    'Hard': [5, 30, 8, fore.orange],
-    'Impossible': [7, 0, 6, fore.red]
+    # Maximum AI depth, enemy random move chance, user squadrons, print color code
+    'Easy': [2, 80, 8, fore.green],
+    'Normal': [4, 50, 6, fore.yellow],
+    'Hard': [6, 30, 6, fore.orange],
+    'Impossible': [8, 0, 4, fore.red]
 }
 
 def convert_display_to_coordinates(position):
@@ -161,53 +190,83 @@ def convert_display_to_coordinates(position):
 
     return [x, y]
 
-def get_position_input(board):
-    # Returns a valid display position, board coordinate, and whether the spot is taken
-    while True:
-        result = input()
-        taken = True
-        is_enemy = True
-
-        if len(result) == 2:
-            if ((result[0] in string.ascii_uppercase[:board.width] or result[0] in string.ascii_lowercase[:board.width])
-                    and result[1] in str(list(range(1, board.height + 1)))):
-
-                coordinates = convert_display_to_coordinates(result)
-
-                if board.positions[coordinates[0]][coordinates[1]] == '-':
-                    taken = False
-
-                if board.army[coordinates[0]][coordinates[1]] != 'E':
-                    is_enemy = False
-
-                return [result, coordinates, taken, is_enemy]
-
-
-def game_over(winner):
-    if winner == 'U':
-        print(f'{style.bold}{fore.white}Congratulations!{style.none}{fore.white} You have defeated the enemy army at '
-              f'{style.bold}{fore.yellow}{difficulty}')
-
 def start_game():
+    global difficulty
+    global max_depth
+    global random_chance
+    global difficulty_color
+
     print(f'{style.none}{fore.white}Choose a difficulty:')
     print(f'{fore.green}Easy{fore.white}, {fore.yellow}Normal{fore.white}, {fore.orange}Hard{fore.white}, or {fore.red}Impossible\n')
-
+    
     while True:
         difficulty = input()
-        if difficulty not in difficulty_transposition
+        if difficulty in difficulty_transposition:
+            break
 
+    max_depth = difficulty_transposition[difficulty][0]
+    random_chance = difficulty_transposition[difficulty][1]
+    num_of_squadrons = difficulty_transposition[difficulty][2]
+    difficulty_color = difficulty_transposition[difficulty][3]
 
-    user_squadrons = {
-        'A': 1,
+    squadrons = {
+        'A': 0,
         'F': 0,
         'M': 0,
         'C': 0,
         'S': 0
     }
 
-    new_battle(user_squadrons)
+    print(f'\n{style.bold}{fore.white}Choose your squadrons:{style.none}{fore.white}')
+
+    # Print squadron names
+    for squadron_id, squadron_class in squadron_classes.items():
+        print(f'{style.none}{fore.white}{squadron_class.name} Squadron ({fore.cyan}{squadron_id}{fore.white})'.ljust(45), end='| ')
+    print(f'\n{style.none}{fore.white}' + ('-' * 28 * len(squadron_classes)))
+
+    # Print values of squadrons
+    for key, value in squadron_attributes.items():
+        if key == 'Name':
+            continue
+
+        for x in value:
+            print(f'{key}: {fore.red}{x}{fore.white}'.ljust(36), end='| ')
+
+        print('')
+
+    # Choose squadrons
+    for i, squadron in enumerate(range(num_of_squadrons)):
+        print(f'\n{style.none}{fore.white}Which squadron would you like to add to your battle? You have {fore.cyan}{num_of_squadrons - i}{fore.white} choices left.')
+
+        squadron_input = ''
+        while True:
+            squadron_input = input()
+            if squadron_input in squadron_classes.keys():
+                break
+
+        squadrons[squadron_input] += 1
+
+    print('')
+
+    new_battle(squadrons)
+
+def game_over(board, winner):
+    board.print()
+
+    print('\n----------------------------------------------------------\n')
+
+    if winner == 'U':
+        print(f'{style.bold}{back.grey}{fore.white}Congratulations!{style.none}{fore.white} You have defeated the enemy army on '
+              f'{style.bold}{difficulty_color}{difficulty}{style.none}{fore.white} mode!')
+    else:
+        print(f'{style.bold}{back.grey}{fore.white}Better luck next time!{style.none}{fore.white} You have been defeated by the enemy army on '
+              f'{style.bold}{difficulty_color}{difficulty}{style.none}{fore.white} mode!')
+
+    exit(0)
 
 def new_battle(user_squadrons):
+    print(f'{style.bold}{fore.red}BATTLE HAS STARTED!\n')
+
     # Generate an empty board
     board = Board(
         [['-' for _ in range(board_height)] for _ in range(board_width)],
@@ -220,8 +279,7 @@ def new_battle(user_squadrons):
     enemy_configuration = enemy_configurations[random.randrange(0, len(enemy_configurations))]
 
     board.positions = enemy_configuration
-    board.healths = [[str(squadron_classes[y].health) if y in squadron_classes else '-' for y in x] for x in
-                     board.positions]
+    board.healths = [[str(squadron_classes[y].health) if y in squadron_classes else '-' for y in x] for x in board.positions]
     board.army = [['E' if y != '-' else '-' for y in x] for x in board.positions]
 
     board.print()
@@ -229,14 +287,13 @@ def new_battle(user_squadrons):
     # Choose starting configuration
     for key in user_squadrons:
         for i in range(user_squadrons[key]):
-            print(
-                f'{style.none}{fore.white}Choose a position for {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1}.')
+            print(f'{style.none}{fore.white}Choose a position for {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} #{i + 1}.')
             display = ''
             coordinates = []
             position_taken = True
 
             while position_taken:
-                position_input = get_position_input(board)
+                position_input = board.get_position_input()
 
                 display = position_input[0]
                 coordinates = position_input[1]
@@ -249,8 +306,7 @@ def new_battle(user_squadrons):
             print('')
             board.print()
 
-            print(
-                f'{style.none}{fore.white}Imported {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} '
+            print(f'{style.none}{fore.white}Imported {style.bold}{fore.green}{squadron_classes[key].name}{style.none}{fore.white} '
                 f'#{i + 1} at {style.bold}{fore.blue}{display}{style.none}{fore.white}.')
 
     # Battle!
@@ -258,12 +314,14 @@ def new_battle(user_squadrons):
     battle(board)
 
 def battle(board):
+    if board.is_game_over()[0]:
+        game_over(board, board.is_game_over()[1])
+
     print(f'{style.under}{fore.white}USER TURN{style.none}{fore.white}')
 
     board.print()
 
-    print(
-        f'{style.none}{fore.white}Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
+    print(f'{style.none}{fore.white}Move a friendly squadron ({fore.cyan}m{fore.white}) OR attack an enemy squadron ({fore.cyan}a{fore.white})')
 
     # Get action that user desires to make
     action = input()
@@ -279,7 +337,7 @@ def battle(board):
     origin_is_enemy = False
 
     while not origin_taken or origin_is_enemy:
-        origin_input = get_position_input(board)
+        origin_input = board.get_position_input()
 
         origin_display = origin_input[0]
         origin_coordinates = origin_input[1]
@@ -295,8 +353,7 @@ def battle(board):
 
         # Check if there are no possible movements
         if len(coordinates_in_range) == 0:
-            print(
-                f'{style.none}{fore.white}No possible moves for squadron at {origin_display}. Try a different action or squadron.\n')
+            print(f'{style.none}{fore.white}No possible moves for squadron at {origin_display}. Try a different action or squadron.\n')
             battle(board)
 
         # Get desired movement destination
@@ -310,7 +367,7 @@ def battle(board):
         next_in_range = False
 
         while next_taken or not next_in_range:
-            next_input = get_position_input(board)
+            next_input = board.get_position_input()
 
             next_display = next_input[0]
             next_coordinates = next_input[1]
@@ -331,8 +388,7 @@ def battle(board):
 
         # Check if there are possible attacks
         if len(coordinates_in_range) == 0:
-            print(
-                f'{style.none}{fore.white}No possible attacks for squadron at {origin_display}. Try a different action or squadron.\n')
+            print(f'{style.none}{fore.white}No possible attacks for squadron at {origin_display}. Try a different action or squadron.\n')
             battle(board)
 
         # Get desired enemy to attack
@@ -346,7 +402,7 @@ def battle(board):
         next_in_range = False
 
         while not next_is_enemy or not next_in_range:
-            next_input = get_position_input(board)
+            next_input = board.get_position_input()
 
             next_display = next_input[0]
             next_coordinates = next_input[1]
@@ -361,15 +417,42 @@ def battle(board):
 
     print(f'\n{fore.white}{style.bold}Enemy calculating move...{style.none}{fore.white}\n')
 
-    global transposition_table
-    transposition_table = {}
-    battle((minimax(board, float('-inf'), float('inf'), True))[1])
+    if board.is_game_over()[0]:
+        game_over(board, board.is_game_over()[1])
+
+    battle(minimax(board, float('-inf'), float('inf'), True))
 
 
-# Enemy AI using minimax and alpha-beta pruning algorithms
+# Enemy AI using iterative deepening minimax and alpha-beta pruning algorithms
+def minimax(board, alpha, beta, enemy_turn):
+    best_child = None
+    evaluation = board.get_evaluation()
+
+    def random_child():
+        return random.choice(get_board_children(board, enemy_turn))
+
+    is_random = True if random.randint(0, 101) < random_chance else False
+    if is_random:
+        return random_child()
+
+    is_random = True
+    for depth in range(1, max_depth + 1):
+        if evaluation > board.get_evaluation():
+            is_random = False
+            break
+
+        evaluation, best_child = minimax_iteration(board, depth, alpha, beta, enemy_turn)
+        alpha = max(alpha, evaluation)
+
+    if is_random:
+        return random_child()
+
+    return best_child
+
 def get_board_children(parent, enemy_turn):
     # Declare variables depending on who's turn it is
     desired_army = 'E' if enemy_turn else 'U'
+
     children = []
 
     # Loop through all squadrons
@@ -405,30 +488,10 @@ def get_board_children(parent, enemy_turn):
 
     return children
 
-
-def minimax(board, alpha, beta, enemy_turn):
-    best_child = None
-    evaluation = board.get_evaluation()
-
-    for depth in range(1, max_depth + 1):
-        if (evaluation > board.get_evaluation() and enemy_turn) or (evaluation < board.get_evaluation() and not enemy_turn):
-            break
-
-        evaluation, best_child = minimax_iteration(board, depth, alpha, beta, enemy_turn)
-        alpha = max(alpha, evaluation)
-
-    return evaluation, best_child
-
-
 def minimax_iteration(board, depth, alpha, beta, enemy_turn):
     # A minimax algorithm using recursive functions to iterate through all possible moves of a parent board.
     # If depth is zero or game is over in that board then it returns the static evaluation of the current child board to its parent board.
 
-    board_hash = hash(board)
-    if (board_hash, depth) in transposition_table:
-        return transposition_table[(board_hash, depth)]
-
-    # or """game over in this board"""
     if depth == 0:
         return board.get_evaluation(), board
 
@@ -450,7 +513,6 @@ def minimax_iteration(board, depth, alpha, beta, enemy_turn):
             if beta <= alpha:
                 break
 
-        transposition_table[(board_hash, depth)] = (max_evaluation, best_child)
         return max_evaluation, best_child
 
     else:
@@ -466,5 +528,4 @@ def minimax_iteration(board, depth, alpha, beta, enemy_turn):
             if beta <= alpha:
                 break
 
-        transposition_table[(board_hash, depth)] = (min_evaluation, best_child)
         return min_evaluation, best_child
