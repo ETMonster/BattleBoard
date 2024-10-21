@@ -1,10 +1,12 @@
 # Battle Board
 Created by Emmett Tackaberry for Computer Science course
 
-## How to Play
+## Instructions
 1. Download *start.py*, *main.py*, *enemy.py*, and *text.py* from Github repository
 2. Move scripts into new folder
 3. Run start.py
+
+To view *brainstorm.drawio*, download the file and open it in [draw.io](https://draw.io)
 
 ## Game Information
 **Battle Board** is a text-based video game made with Python. You play against an enemy AI on a 6x6 board where you can either move your own squadron or attack an enemy squadron with the squadrons you chose prior to playing. 
