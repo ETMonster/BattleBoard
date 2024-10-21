@@ -179,8 +179,8 @@ difficulty_transposition = {
     # Maximum AI depth, enemy random move chance, user squadrons, print color code
     'Easy': [2, 80, 8, fore.green],
     'Normal': [4, 50, 6, fore.yellow],
-    'Hard': [6, 30, 6, fore.orange],
-    'Impossible': [8, 0, 4, fore.red]
+    'Hard': [5, 30, 6, fore.orange],
+    'Impossible': [7, 0, 4, fore.red]
 }
 
 def convert_display_to_coordinates(position):
