@@ -14,7 +14,7 @@ Created by Emmett Tackaberry for Computer Science course
 |Squadron|Health|Attack range|Move range|Damage|Bonus damage|Bonus against|
 |--------|------|------------|----------|------|------------|-------------|
 |Archer  |100   |4           |1         |95    |30          |Spearman     |
-|Footman |$80   |1           |2         |85    |10          |Archer       |
-|Spearman|$420  |1           |1         |50    |100         |Cavalier     |
-|Cavalier|$250  |1           |3         |90    |30          |Mage         |
-|Mage    |$80   |3           |2         |70    |40          |Footman      |
+|Footman |350   |1           |2         |85    |10          |Archer       |
+|Spearman|650   |1           |1         |50    |100         |Cavalier     |
+|Cavalier|500   |1           |3         |90    |30          |Mage         |
+|Mage    |200   |3           |2         |70    |40          |Footman      |
